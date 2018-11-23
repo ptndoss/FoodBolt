@@ -1,15 +1,22 @@
 package edu.cloudtech.FoodBolt.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.cloudtech.FoodBolt.dao.CustomerDetails;
+import edu.cloudtech.FoodBolt.dao.FoodList;
+import edu.cloudtech.FoodBolt.dao.FoodListRepository;
+import edu.cloudtech.FoodBolt.dao.RestaurantDay;
+import edu.cloudtech.FoodBolt.dao.RestaurantTiming;
 import edu.cloudtech.FoodBolt.dao.ServiceProvider;
+import edu.cloudtech.FoodBolt.service.RestaurantTimingService;
 import edu.cloudtech.FoodBolt.service.ServiceProviderService;
 
 @RestController
@@ -41,23 +48,94 @@ public class ServiceProviderController {
 	
 	@RequestMapping(value = "/addServiceProvider", method = RequestMethod.POST)
 	public void addServiceProvider() {
+	}
+	
+	@Autowired
+	RestaurantTimingService restauranttimingService;
+	
+	@RequestMapping(value = "/reservationTiming", method = RequestMethod.GET)
+	public List getAllReservationTiming() {
 		
-		ServiceProvider serv_provider = new ServiceProvider(); 
-		
-		serv_provider.setRestaurant_name("ABC Hotel");
-		serv_provider.setEmail("abc3@gmail.com");
-		serv_provider.setCity("SanJose");
-		serv_provider.setCuisine_typ("veg");
-		serv_provider.setState("CA");
-		serv_provider.setTotal_tables(10);
-		serv_provider.setTotal_occupancy(100);
-		serv_provider.setIs_active("YES");
-		
-		serviceproviderService.addServiceProviders(serv_provider);
+		System.out.println("In all Restaurant controller");
+		System.out.println("Restaurant Details" + restauranttimingService.getAllRestaurantTimings());
+		return restauranttimingService.getAllRestaurantTimings();
+				
 		
 	}
 	
+	@RequestMapping(value = "/addReservTiming", method = RequestMethod.POST)
+	public void addReservationTiming() {
+		
+		RestaurantTiming restTiming = new RestaurantTiming(); 
+//		cust.setCust_id(15);		
+		RestaurantDay restDay = new RestaurantDay();
+		restDay.setRestaurant_id(2);
+		restDay.setDay("TUESDAY");
+		Date d = new Date();
+		Calendar rightNow = Calendar.getInstance();
+		System.out.println("Date From Calender" + rightNow.getTime() + " ");
+		restTiming.setRestaurantDay(restDay);
+		restTiming.setTiming_evening(rightNow.getTime());
+		restTiming.setTiming_morning(rightNow.getTime());
+		restTiming.setTiming_noon(rightNow.getTime());
 	
+		
+		restauranttimingService.addRestaurantTiming(restTiming);
+				
+		
+	}	
+	
+	@RequestMapping(value = "/restaurantTimeByDay", method = RequestMethod.GET)
+	public RestaurantTiming getRestaurantTime() {
+		
+		
+		RestaurantDay restDay= new RestaurantDay();
+		restDay.setRestaurant_id(2);
+		restDay.setDay("MONDAY");
+		
+		return  restauranttimingService.getRestaurantTimings(restDay);
+	}
+	
+	@Autowired 
+	public FoodListRepository foodListRepository;
+	
+	
+	@RequestMapping(value = "/addFoodList", method = RequestMethod.POST)
+	public String addFoodList(@RequestBody FoodList foodList) {
+		System.out.println(foodList.getRestaurant_id());
+		System.out.println(foodList.getCategory());
+		foodListRepository.addFoodList(foodList);
+		return "Food added successfully";
+	}
+	
+	@RequestMapping(value = "/getFoodList/{restaurant_id}", method = RequestMethod.GET)
+	public FoodList getFoodList(@PathVariable("restaurant_id") int restaurant_id) {
+		
+		return foodListRepository.getFoodList(restaurant_id);
+//		return "Food added successfully";
+	}
+	
+	
+	
+	@RequestMapping(value = "/deleteFoodList/{restaurant_id}", method = RequestMethod.DELETE)
+	public String deleteFoodList(@PathVariable("restaurant_id") String restaurant_id) {
+		
+		FoodList foodlist = new FoodList();
+		foodlist.setRestaurant_id(restaurant_id);
+		foodListRepository.deleteFoodList(foodlist);
+		return "Food Deleted successfully";
+	}
+	
+	
+	
+	@RequestMapping(value = "/updateFoodList/{restaurant_id}", method = RequestMethod.PUT)
+	public String updateFoodList(@PathVariable("restaurant_id") String restaurant_id) {
+		
+		FoodList foodlist = new FoodList();
+		foodlist.setRestaurant_id(restaurant_id);
+		foodListRepository.updateFoodList(foodlist);
+		return "Food Updated successfully";
+	}
 	
 	
 
