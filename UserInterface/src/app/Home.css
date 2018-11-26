@@ -1,0 +1,16 @@
+
+.home-container {
+    text-align: center;
+    min-height: calc(100vh - 60px);
+    overflow: auto;
+    position: relative;
+    padding-top: 0px;
+}
+
+.home-title {
+    font-size: 30px;
+    font-weight: 200;
+    color: rgba(0,0,0,0.70);
+    margin-top: 0px; 
+}
+    

@@ -1,0 +1,60 @@
+
+
+.login-container {
+    text-align: center;
+}
+
+.login-content {
+    background: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    border-radius: 2px;
+    width: 400px;
+    height: auto;
+    display: inline-block;
+    margin-top: 30px;
+    vertical-align: middle;
+    position: relative;    
+    padding: 35px;
+}
+
+.social-btn {
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.social-btn img {
+    height: 32px;
+    float: left;
+    margin-top: 1px;
+}
+
+.social-btn.google {
+    margin-top: 7px;
+}
+
+.social-btn.google img {
+    height: 30px;
+    margin-left: 3px;
+    margin-top: 1px;
+}
+
+.social-btn.facebook img {
+    height: 25px;
+    margin-left: 3px;
+    margin-top: 4px;
+}
+
+.signup-link {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+}
+
+.login-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
