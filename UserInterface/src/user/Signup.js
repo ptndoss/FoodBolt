@@ -6,7 +6,7 @@ import { signup } from '../common/APIUtils';
 import fbLogo from '../resources/fb-logo.png';
 import googleLogo from '../resources/google-logo.png';
 import Alert from 'react-s-alert';
-
+import { FormErrors } from './FormErrors';
 
 class Signup extends Component {
     render() {
@@ -43,15 +43,54 @@ class SignupForm extends Component {
             lastName: '',
             email: '',
             password: '',
+            formErrors: { email: '', password: '' },
             city: '',
             state: '',
             cuisine: '',
             guests: '',
             totalTables: '',
             totalOccupancy: ''
+            /*
+            emailValid: false,
+            passwordValid: false,
+            formValid: false
+            */
+
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.formErrors;
+        let emailValid = this.state.emailValid;
+        let passwordValid = this.state.passwordValid;
+
+        switch (fieldName) {
+            case 'email':
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : 'Please enter valid email (Eg: foodbolt@gmail.com)';
+                break;
+            case 'password':
+                passwordValid = value.length >= 6;
+                fieldValidationErrors.password = passwordValid ? '' : 'Password is too short';
+                break;
+            default:
+                break;
+        }
+        this.setState({
+            formErrors: fieldValidationErrors,
+            emailValid: emailValid,
+            passwordValid: passwordValid
+        }, this.validateForm);
+    }
+
+    validateForm() {
+        this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
+    }
+
+    errorClass(error) {
+        return (error.length === 0 ? '' : 'has-error');
     }
 
     handleInputChange(event) {
@@ -60,8 +99,14 @@ class SignupForm extends Component {
         const inputValue = target.value;
 
         this.setState({
-            [inputName] : inputValue
-        });        
+            [inputName]: inputValue
+        }); 
+
+        /*
+        this.setState({[inputName]: inputValue },
+            () => { this.validateField(inputName, inputValue) });
+        */
+      
     }
 
     handleSubmit(event) {
@@ -82,6 +127,7 @@ class SignupForm extends Component {
         return (
 
             <form onSubmit={this.handleSubmit}>
+
                 <div className="form-item">
                     <select name="signupRole"
                         className="form-control"
@@ -96,27 +142,41 @@ class SignupForm extends Component {
                 {
                     this.state.signupRole === 'Customer' ?
                         <div>
-
                             <div className="form-item">
                                 <input type="text" name="firstName"
-                                    className="firstname-control" placeholder="First Name"
+                                    className="firstname-control" placeholder="First Name" autocomplete="off"
+                                    pattern="^[0-9a-zA-Z]{1,32}$"
+                                    title="First Name can have lowercase and uppercase letters. Range 1 - 32 chars."
                                     value={this.state.firstName} onChange={this.handleInputChange} required />
                                 <input type="text" name="lastName"
-                                    className="lastname-control" placeholder="Last Name"
+                                    className="lastname-control" placeholder="Last Name" autocomplete="off"
+                                    pattern="^[0-9a-zA-Z]{1,32}$"
+                                    title="First Name can have lowercase and uppercase letters. Range 1 - 32 chars."
                                     value={this.state.lastName} onChange={this.handleInputChange} required />
                             </div>
-                            <div className="form-item">
-                                <input type="email" name="email"
+
+                            {/*<span className="error-message">{this.state.formErrors.email}</span> */}
+                            <div className={"form-item"}>
+                                <input type="email" name="email" autocomplete="off"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    title="Email address eg: user@gmail.com"
                                     className="form-control" placeholder="Email"
-                                    value={this.state.email} onChange={this.handleInputChange} required />
+                                    value={this.state.email} onChange={this.handleInputChange} required/>
                             </div>
-                            <div className="form-item">
-                                <input type="password" name="password"
+
+                            {/*<span className="error-message">{this.state.formErrors.password}</span> */}
+                            <div className={"form-item"}>
+                                <input type="password" name="password" autocomplete="off"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,16}$"
+                                    title="Passwd should contain atleast 1 uppercase, 1 lowercase, 1 number. Range 6 - 16 chars."
                                     className="form-control" placeholder="Password"
                                     value={this.state.password} onChange={this.handleInputChange} required />
                             </div>
+                            
                             <div className="form-item">
-                                <input type="text" name="city"
+                                <input type="text" name="city" autocomplete="off"
+                                    pattern="^[0-9a-zA-Z ]{6,32}$"
+                                    title="City Name can have lowercase, uppercase letters or spaces. Range 6 - 32 chars."
                                     className="leftform-control" placeholder="City"
                                     value={this.state.city} onChange={this.handleInputChange} required />
                                 <select name="state"
@@ -207,22 +267,30 @@ class SignupForm extends Component {
                         </div>
                         : <div>
                             <div className="form-item">
-                                <input type="text" name="name"
+                                <input type="text" name="name" autocomplete="off"
+                                    pattern="^[0-9a-zA-Z]{6,32}$"
+                                    title="Restaurant Name can have lowercase and uppercase letters. Range 6 - 32 chars."
                                     className="form-control" placeholder="Restaurant Name"
                                     value={this.state.name} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-item">
-                                <input type="email" name="email"
+                                <input type="email" name="email" autocomplete="off"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    title="Email address eg: restaurantuser@gmail.com"
                                     className="form-control" placeholder="Email"
                                     value={this.state.email} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-item">
-                                <input type="password" name="password"
+                                <input type="password" name="password" autocomplete="off"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,16}$"
+                                    title="Passwd should contain atleast 1 uppercase, 1 lowercase, 1 number. Range 6 - 16 chars."
                                     className="form-control" placeholder="Password"
                                     value={this.state.password} onChange={this.handleInputChange} required />
                             </div>
                             <div className="form-item">
-                                <input type="text" name="city"
+                                <input type="text" name="city" autocomplete="off"
+                                    pattern="^[0-9a-zA-Z ]{6,32}$"
+                                    title="City Name can have lowercase, uppercase letters or spaces. Range 6 - 32 chars."
                                     className="leftform-control" placeholder="City"
                                     value={this.state.city} onChange={this.handleInputChange} required />
                                 <select name="state"

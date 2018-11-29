@@ -88,13 +88,13 @@ class LoginForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="form-item">
-                    <input type="email" name="email" 
-                        className="form-control" placeholder="Email"
+                    <input type="text" name="email" 
+                        className="form-control" placeholder="Email" autocomplete="off"
                         value={this.state.email} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <input type="password" name="password" 
-                        className="form-control" placeholder="Password"
+                    <input type="password" name="password"
+                        className="form-control" placeholder="Password" autocomplete="off"
                         value={this.state.password} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
