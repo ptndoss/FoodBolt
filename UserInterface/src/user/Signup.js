@@ -268,8 +268,8 @@ class SignupForm extends Component {
                         : <div>
                             <div className="form-item">
                                 <input type="text" name="name" autocomplete="off"
-                                    pattern="^[0-9a-zA-Z]{6,32}$"
-                                    title="Restaurant Name can have lowercase and uppercase letters. Range 6 - 32 chars."
+                                    pattern="^[0-9a-zA-Z ]{6,32}$"
+                                    title="Restaurant Name can have lowercase, uppercase letters and space. Range 6 - 32 chars."
                                     className="form-control" placeholder="Restaurant Name"
                                     value={this.state.name} onChange={this.handleInputChange} required />
                             </div>
@@ -377,10 +377,10 @@ class SignupForm extends Component {
                             </div>
                             <div>
                                 <input type="number" name="totalTables" min="1" max="50"
-                                    className="firstname-control" placeholder="Total Tables"
+                                    className="totaltables-control" placeholder="Total Tables"
                                     value={this.state.totalTables} onChange={this.handleInputChange} required />
                                 <input type="number" name="totalOccupancy" min="1" max="50"
-                                    className="lastname-control" placeholder="Total Occupancy"
+                                    className="totaloccupancy-control" placeholder="Total Occupancy"
                                     value={this.state.totalOccupancy} onChange={this.handleInputChange} required />
                             </div>
                         </div>
