@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.cloudtech</groupId>
-	<artifactId>Food_Bolt</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>FoodBolt</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>Food_Bolt</name>
@@ -15,36 +15,37 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
 		<version>2.1.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
+=======
+		<version>2.0.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+>>>>>>> 922bfb3dac03f9b3b6712928403df4744224942b
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<awssdk.dynamodbversion>1.11.375</awssdk.dynamodbversion>
+		<springdata.dynamodbversion>5.0.2</springdata.dynamodbversion>
 	</properties>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -77,6 +78,7 @@
 			<version>1.11.461</version>
 		</dependency>
 		
+<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
 <dependency>
     <groupId>com.amazonaws</groupId>
@@ -89,6 +91,44 @@
 			<version>3.2.1</version> <type>maven-plugin</type> </dependency> -->
 
 
+=======
+		
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-client</artifactId>
+        </dependency>		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		
+		<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.5.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>${awssdk.dynamodbversion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.derjust</groupId>
+			<artifactId>spring-data-dynamodb</artifactId>
+			<version>${springdata.dynamodbversion}</version>
+		</dependency>
+		
+	
+>>>>>>> 922bfb3dac03f9b3b6712928403df4744224942b
 	</dependencies>
 
 	<build>
@@ -126,6 +166,17 @@
 
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 
 </project>

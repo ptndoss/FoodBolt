@@ -1,0 +1,22 @@
+#reserve {
+    border: 1px solid black;
+    width: 30%;
+    padding-bottom: 20px;
+    background: white;
+}
+
+p {
+    font-family: sans-serif;
+}
+
+#book {
+    margin-top: 30px;
+}
+
+#form1 {
+    margin-bottom: 20px;
+}
+
+#form2 {
+    margin-bottom: 20px;
+}
