@@ -8,5 +8,6 @@ public class FoodBoltApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FoodBoltApplication.class, args);
+		new FoodboltLambda();
 	}
 }

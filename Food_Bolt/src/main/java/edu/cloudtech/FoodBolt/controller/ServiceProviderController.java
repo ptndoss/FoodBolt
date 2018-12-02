@@ -53,8 +53,8 @@ public class ServiceProviderController {
 	@Autowired
 	RestaurantTimingService restauranttimingService;
 	
-	@RequestMapping(value = "/reservationTiming", method = RequestMethod.GET)
-	public List getAllReservationTiming() {
+	@RequestMapping(value = "/restaurantTiming", method = RequestMethod.GET)
+	public List getAllRestaurantTiming() {
 		
 		System.out.println("In all Restaurant controller");
 		System.out.println("Restaurant Details" + restauranttimingService.getAllRestaurantTimings());
@@ -63,8 +63,8 @@ public class ServiceProviderController {
 		
 	}
 	
-	@RequestMapping(value = "/addReservTiming", method = RequestMethod.POST)
-	public void addReservationTiming() {
+	@RequestMapping(value = "/addRestauTiming", method = RequestMethod.POST)
+	public void addRestaurantTiming() {
 		
 		RestaurantTiming restTiming = new RestaurantTiming(); 
 //		cust.setCust_id(15);		
@@ -95,6 +95,35 @@ public class ServiceProviderController {
 		
 		return  restauranttimingService.getRestaurantTimings(restDay);
 	}
+	
+	
+//	
+//	@RequestMapping(value = "/reserveTable", method = RequestMethod.POST)
+//	public String reserveTable(@RequestBody FoodList foodList) {
+//		System.out.println(foodList.getRestaurant_id());
+//		System.out.println(foodList.getCategory());
+//		foodListRepository.addFoodList(foodList);
+//		return "Food added successfully";
+//	}
+	
+	
+	
+//	@RequestMapping(value = "/findTable", method = RequestMethod.POST)
+//	public String findTable(@PathVariable int restaurant_id,@PathVariable ) {
+//		System.out.println(foodList.getRestaurant_id());
+//		System.out.println(foodList.getCategory());
+//		foodListRepository.addFoodList(foodList);
+//		return "Food added successfully";
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@Autowired 
 	public FoodListRepository foodListRepository;
