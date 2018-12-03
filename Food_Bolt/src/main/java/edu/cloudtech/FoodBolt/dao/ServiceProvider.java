@@ -2,10 +2,12 @@ package edu.cloudtech.FoodBolt.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "SERVICE_PROVIDER")
@@ -13,12 +15,11 @@ public class ServiceProvider {
 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "RESTAURANT_ID")
-	int restaurant_id;
+	long restaurant_id;
 	
 	@Column(name = "RESTAURANT_NAME")
-	String restaurant_name;
+	String name;
 	
 	@Column(name = "EMAIL")
 	String email;
@@ -29,50 +30,98 @@ public class ServiceProvider {
 	@Column(name = "STATE")
 	String state;
 	
-	@Column(name = "CUISINE_TYPE")
-	String cuisine_typ;
+	@Column(name = "CUISINE")
+	String cuisine;
 	
-	@Column(name = "TOT_TBLS_AVALBL")
-	int total_tables;
+	@Column(name = "TOTAL_TABLES")
+	int totalTables;
 	
 	@Column(name = "TOTAL_OCCUPANCY")
-	int total_occupancy;
+	int totalOccupancy;
 	
 	@Column(name = "IS_ACTIVE")
 	String is_active;
 	
-	
+	@Column(name = "SIGNUP_ROLE")
+    private String signupRole;
+
+	@Column(name = "IMAGE_URL")
+    private String imageUrl;
+
+    @JsonIgnore
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PROVIDER")
+    private AuthProvider provider;
+    
 	public ServiceProvider() {
 		super();
 	}
 	
 
-	public ServiceProvider(String restaurant_name, String email, String city, String state, String cuisine_typ,
-			int total_tables, int total_occupancy) {
+	public ServiceProvider(String name, String email, String city, String state, String cuisine,
+			int totalTables, int totalOccupancy) {
 		super();
-		this.restaurant_name = restaurant_name;
+		this.name = name;
 		this.email = email;
 		this.city = city;
 		this.state = state;
-		this.cuisine_typ = cuisine_typ;
-		this.total_tables = total_tables;
-		this.total_occupancy = total_occupancy;
+		this.cuisine = cuisine;
+		this.totalTables = totalTables;
+		this.totalOccupancy = totalOccupancy;
 	}
 
-	public int getRestaurant_id() {
+	public String getSignupRole() {
+		return signupRole;
+	}
+
+	public void setSignupRole(String signupRole) {
+		this.signupRole = signupRole;
+	}
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public AuthProvider getProvider() {
+		return provider;
+	}
+
+
+	public void setProvider(AuthProvider provider) {
+		this.provider = provider;
+	}
+	
+	public long getRestaurant_id() {
 		return restaurant_id;
 	}
 
-	public void setRestaurant_id(int restaurant_id) {
+	public void setRestaurant_id(long restaurant_id) {
 		this.restaurant_id = restaurant_id;
 	}
 
-	public String getRestaurant_name() {
-		return restaurant_name;
+	public String getName() {
+		return name;
 	}
 
-	public void setRestaurant_name(String restaurant_name) {
-		this.restaurant_name = restaurant_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -99,28 +148,28 @@ public class ServiceProvider {
 		this.state = state;
 	}
 
-	public String getCuisine_typ() {
-		return cuisine_typ;
+	public String getCuisine() {
+		return cuisine;
 	}
 
-	public void setCuisine_typ(String cuisine_typ) {
-		this.cuisine_typ = cuisine_typ;
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
 
-	public int getTotal_tables() {
-		return total_tables;
+	public int getTotalTables() {
+		return totalTables;
 	}
 
-	public void setTotal_tables(int total_tables) {
-		this.total_tables = total_tables;
+	public void setTotalTables(int totalTables) {
+		this.totalTables = totalTables;
 	}
 
-	public int getTotal_occupancy() {
-		return total_occupancy;
+	public int getTotalOccupancy() {
+		return totalOccupancy;
 	}
 
-	public void setTotal_occupancy(int total_occupancy) {
-		this.total_occupancy = total_occupancy;
+	public void setTotalOccupancy(int totalOccupancy) {
+		this.totalOccupancy = totalOccupancy;
 	}
 
 	public String getIs_active() {

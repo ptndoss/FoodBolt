@@ -1,4 +1,4 @@
-package edu.cloudtech.FoodBolt.model;
+package edu.cloudtech.FoodBolt.dao;
 
 public enum  AuthProvider {
     local,

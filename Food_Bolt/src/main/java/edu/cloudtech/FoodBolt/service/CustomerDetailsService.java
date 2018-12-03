@@ -25,7 +25,7 @@ public class CustomerDetailsService {
 	}
 	
 	
-	public CustomerDetails getCustomerDetails(int cust_id) {
+	public CustomerDetails getCustomerDetails(long cust_id) {
 		
 		System.out.println("Cust Id" + cust_id);
 //		List<CustomerDetails> cust = customerdetailsDAO.findById(cust_id);

@@ -1,15 +1,17 @@
 package edu.cloudtech.FoodBolt.security;
 
-import edu.cloudtech.FoodBolt.model.User;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import edu.cloudtech.FoodBolt.dao.CustomerDetails;
+import edu.cloudtech.FoodBolt.dao.ServiceProvider;
 
 @SuppressWarnings("serial")
 public class UserPrincipal implements OAuth2User, UserDetails {
@@ -26,24 +28,43 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(User user) {
+    public static UserPrincipal create(CustomerDetails customer) {
         List<GrantedAuthority> authorities = Collections.
                 singletonList(new SimpleGrantedAuthority("ROLE_USER"));
 
         return new UserPrincipal(
-                user.getId(),
-                user.getEmail(),
-                user.getPassword(),
+        		customer.getCust_id(),
+        		customer.getEmail(),
+        		customer.getPassword(),
                 authorities
         );
     }
 
-    public static UserPrincipal create(User user, Map<String, Object> attributes) {
-        UserPrincipal userPrincipal = UserPrincipal.create(user);
+    public static UserPrincipal create(CustomerDetails customer, Map<String, Object> attributes) {
+        UserPrincipal userPrincipal = UserPrincipal.create(customer);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;
     }
 
+    
+    public static UserPrincipal create(ServiceProvider serviceProvider) {
+        List<GrantedAuthority> authorities = Collections.
+                singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+
+        return new UserPrincipal(
+        		serviceProvider.getRestaurant_id(),
+        		serviceProvider.getEmail(),
+        		serviceProvider.getPassword(),
+                authorities
+        );
+    }
+    
+    public static UserPrincipal create(ServiceProvider serviceProvider, Map<String, Object> attributes) {
+        UserPrincipal userPrincipal = UserPrincipal.create(serviceProvider);
+        userPrincipal.setAttributes(attributes);
+        return userPrincipal;
+    }
+    
     public Long getId() {
         return id;
     }

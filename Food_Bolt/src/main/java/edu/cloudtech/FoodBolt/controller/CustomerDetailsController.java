@@ -30,7 +30,7 @@ public class CustomerDetailsController {
 	}
 	
 	@RequestMapping(value = "/customerDetails/{cust_id}", method = RequestMethod.GET)
-	public CustomerDetails getCustomer(@PathVariable int cust_id) {
+	public CustomerDetails getCustomer(@PathVariable long cust_id) {
 		
 		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
 		System.out.println("In Customer controller with Cust ID " + cust_id);
@@ -46,7 +46,7 @@ public class CustomerDetailsController {
 		CustomerDetails cust = new CustomerDetails(); 
 //		cust.setCust_id(15);		
 		cust.setFirst_name("Thiru");
-		cust.setMiddle_name("Nambi");
+//		cust.setMiddle_name("Nambi");
 		cust.setEmail("email1@gmail.com");
 		cust.setCity("city");
 		cust.setLast_name("Doss");

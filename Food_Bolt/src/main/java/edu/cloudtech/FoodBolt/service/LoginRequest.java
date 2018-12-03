@@ -1,8 +1,5 @@
 package edu.cloudtech.FoodBolt.service;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
 public class LoginRequest {
 
     private String email;

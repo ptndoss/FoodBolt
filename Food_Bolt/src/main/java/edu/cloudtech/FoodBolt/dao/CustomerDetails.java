@@ -2,10 +2,14 @@ package edu.cloudtech.FoodBolt.dao;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import edu.cloudtech.FoodBolt.dao.AuthProvider;
 
 @Entity
 @Table(name = "CUST_DETAILS")
@@ -14,32 +18,31 @@ public class CustomerDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CUST_ID")
-	int cust_id;
-	
+	long cust_id;
+
+    @Column(name = "SIGNUP_ROLE")
+    private String signupRole;
+    
 	@Column(name = "FIRST_NAME")
 	String first_name;
-	
-	@Column(name = "MIDDLE_NAME")
-	String middle_name;
 	
 	@Column(name = "LAST_NAME")
 	String last_name;
 	
 	@Column(name = "EMAIL")
 	String email;
-	
-	
+		
 	@Column(name = "CITY")
 	String city;
 	
 	@Column(name = "STATE")
 	String state;
 	
-	@Column(name = "PREF_CUISIN_TYP")
-	String pref_cuisin_typ;
+	@Column(name = "CUISINE")
+	String cuisine;
 	
 	@Column(name = "DEFAULT_GUESTS")
-	String default_guests;
+	int default_guests;
 	
 	@Column(name = "IS_ACTIVE")
 	String is_active;
@@ -47,35 +50,43 @@ public class CustomerDetails {
 	@Column(name = "PASSWORD")
 	String password;
 	
-	
-	
-	
+	@Column(name = "IMAGE_URL")
+    private String imageUrl;
 
-	public CustomerDetails(String first_name, String middle_name, String last_name, String email, String city,
-			String state, String pref_cuisin_typ, String default_guests) {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PROVIDER")
+    private AuthProvider provider;
+    
+	public CustomerDetails(String first_name, String last_name, String email, String city,
+			String state, String cuisine, int default_guests) {
 		super();
 		this.first_name = first_name;
-		this.middle_name = middle_name;
 		this.last_name = last_name;
 		this.email = email;
 		this.city = city;
 		this.state = state;
-		this.pref_cuisin_typ = pref_cuisin_typ;
+		this.cuisine = cuisine;
 		this.default_guests = default_guests;
 	}
 	
 	public CustomerDetails() {
 		super();
 	}
-	
-	
 
-	public int getCust_id() {
+	public long getCust_id() {
 		return cust_id;
 	}
 
-	public void setCust_id(int cust_id) {
+	public void setCust_id(long cust_id) {
 		this.cust_id = cust_id;
+	}
+	
+	public String getSignupRole() {
+		return signupRole;
+	}
+
+	public void setSignupRole(String signupRole) {
+		this.signupRole = signupRole;
 	}
 
 	public String getFirst_name() {
@@ -84,14 +95,6 @@ public class CustomerDetails {
 
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
-	}
-
-	public String getMiddle_name() {
-		return middle_name;
-	}
-
-	public void setMiddle_name(String middle_name) {
-		this.middle_name = middle_name;
 	}
 
 	public String getLast_name() {
@@ -126,19 +129,19 @@ public class CustomerDetails {
 		this.state = state;
 	}
 
-	public String getPref_cuisin_typ() {
-		return pref_cuisin_typ;
+	public String getCuisine() {
+		return cuisine;
 	}
 
-	public void setPref_cuisin_typ(String pref_cuisin_typ) {
-		this.pref_cuisin_typ = pref_cuisin_typ;
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
 	}
 
-	public String getDefault_guests() {
+	public int getDefault_guests() {
 		return default_guests;
 	}
 
-	public void setDefault_guests(String default_guests) {
+	public void setDefault_guests(int default_guests) {
 		this.default_guests = default_guests;
 	}
 
@@ -157,6 +160,22 @@ public class CustomerDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public AuthProvider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(AuthProvider provider) {
+		this.provider = provider;
+	}
 	
-	
+
 }

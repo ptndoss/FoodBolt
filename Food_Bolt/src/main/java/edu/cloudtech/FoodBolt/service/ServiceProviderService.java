@@ -21,7 +21,7 @@ public class ServiceProviderService {
 	}
 	
 	//Getting Service provider with restaurant ID
-	public ServiceProvider getServiceProvider(int restaurant_id) {
+	public ServiceProvider getServiceProvider(long restaurant_id) {
 		
 		return serviceproviderDAO.findById(restaurant_id).orElse(null);
 	}

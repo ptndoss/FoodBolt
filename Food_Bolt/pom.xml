@@ -15,13 +15,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-<<<<<<< HEAD
-		<version>2.1.0.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-=======
 		<version>2.0.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
->>>>>>> 922bfb3dac03f9b3b6712928403df4744224942b
 	</parent>
 
 	<properties>
@@ -52,18 +47,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.github.derjust</groupId>
-			<artifactId>spring-data-dynamodb</artifactId>
-			<version>5.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-dynamodb</artifactId>
-			<version>1.11.34</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
 		<dependency>
 			<groupId>com.amazonaws</groupId>
@@ -78,20 +61,16 @@
 			<version>1.11.461</version>
 		</dependency>
 		
-<<<<<<< HEAD
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
-<dependency>
-    <groupId>com.amazonaws</groupId>
-    <artifactId>aws-lambda-java-events</artifactId>
-    <version>2.2.2</version>
-</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-events</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 
 
 		<!-- <dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-shade-plugin</artifactId> 
 			<version>3.2.1</version> <type>maven-plugin</type> </dependency> -->
-
-
-=======
 		
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -128,7 +107,6 @@
 		</dependency>
 		
 	
->>>>>>> 922bfb3dac03f9b3b6712928403df4744224942b
 	</dependencies>
 
 	<build>

@@ -1,7 +1,7 @@
 package edu.cloudtech.FoodBolt.security.oauth2.user;
 
 import edu.cloudtech.FoodBolt.exception.OAuth2AuthenticationProcessingException;
-import edu.cloudtech.FoodBolt.model.AuthProvider;
+import edu.cloudtech.FoodBolt.dao.AuthProvider;
 
 import java.util.Map;
 
