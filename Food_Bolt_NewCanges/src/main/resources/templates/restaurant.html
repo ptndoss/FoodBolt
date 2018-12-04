@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/restaurant.css">
+<style>
+body {
+  margin: 0;
+  background-color: grey;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+    border-radius: 5px;
+    margin-top: 50px;
+    display:inline-block;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+img:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.container {
+    padding: 2px 16px;
+    padding-top: 10px;
+    background-color: white;
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+
+<div class="card" th:each ="restaurants : ${restaurants}">
+
+<div class="card">
+  <img src="icons/rest1.jpg" alt="Avatar" style="width:100%">
+  <div class="container" th:action="@{reserveTable}" >
+    <h4 th:text="${restaurants.restaurant_name}" th:value="${restaurants.restaurant_id}" id="rest_id" name = "rest_id"></h4>
+  <!--   <a><input  onclick="location.href='/reserveTable'" value="RestaurantLists"  /> </a> --> 
+  	<button> Reserve Table </button>
+  </div>
+  
+</div>
+
+</div>
+
+
+</body>
+</html>

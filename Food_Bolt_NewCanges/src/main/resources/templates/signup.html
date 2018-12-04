@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+</head>
+<body>
+
+	<div>
+	SIGN UP
+<!--  <form method="post">  -->
+<form class="modal-content" method="post" th:action="@{Signup}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
+	First Name<input type="text" id="fname" name="first_name" required><br>
+	Last Name<input type="text" id="lname" name="last_name" required><br>
+	Email<input type="email" id="email" name="email" required><br>
+	Password<input type="password" id="password" name="password" required><br>
+	City<input type="text" id="city" name="city" required><br>
+	State							<select name="state">
+									<option value="CA">CA</option>
+                                </select><br>
+	Prefered Cuisine type           <select name="pref_cuisin_typ">
+                                    <option value="American">American</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Continental">Continental</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Mexican">Mexican</option>
+                                </select><br>
+	Default Guests<input type="text" id="guests" name="default_guests" required><br>
+	<button>Submit</button>
+</form>
+</div>
+
+</body>
+</html>
